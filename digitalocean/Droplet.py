@@ -136,7 +136,7 @@ class Droplet(BaseAPI):
 
         droplets = []
 
-        data = api.get_data("droplets/", type=POST, params=data)
+        data = api.get_data("droplets", type=POST, params=data)
 
         if data:
             action_ids = [data["links"]["actions"][0]["id"]]
@@ -215,7 +215,7 @@ class Droplet(BaseAPI):
             Returns dict or Action
         """
         action = self.get_data(
-            "droplets/%s/actions/" % self.id,
+            "droplets/%s/actions" % self.id,
             type=POST,
             params=params
         )
@@ -561,7 +561,7 @@ class Droplet(BaseAPI):
         if self.user_data:
             data["user_data"] = self.user_data
 
-        data = self.get_data("droplets/", type=POST, params=data)
+        data = self.get_data("droplets", type=POST, params=data)
 
         if data:
             self.id = data['droplet']['id']
@@ -581,7 +581,7 @@ class Droplet(BaseAPI):
             Returns a list of Action objects
             This actions can be used to check the droplet's status
         """
-        answer = self.get_data("droplets/%s/actions/" % self.id, type=GET)
+        answer = self.get_data("droplets/%s/actions" % self.id, type=GET)
 
         actions = []
         for action_dict in answer['actions']:
@@ -622,7 +622,7 @@ class Droplet(BaseAPI):
         """
 
         kernels = list()
-        data = self.get_data("droplets/%s/kernels/" % self.id)
+        data = self.get_data("droplets/%s/kernels" % self.id)
         while True:
             for jsond in data[u'kernels']:
                 kernel = Kernel(**jsond)

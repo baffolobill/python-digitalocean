@@ -25,7 +25,7 @@ class Account(BaseAPI):
 
     def load(self):
         # URL https://api.digitalocean.com/v2/account
-        data = self.get_data("account/")
+        data = self.get_data("account")
         account = data['account']
 
         for attr in account.keys():

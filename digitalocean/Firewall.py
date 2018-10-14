@@ -188,7 +188,7 @@ class Firewall(BaseAPI):
                   'outbound_rules': jsonpickle.decode(outbound),
                   'tags': self.tags}
 
-        data = self.get_data('firewalls/', type=POST, params=params)
+        data = self.get_data('firewalls', type=POST, params=params)
 
         if data:
             self._set_firewall_attributes(data)
@@ -241,7 +241,7 @@ class Firewall(BaseAPI):
         """
             Destroy the Firewall
         """
-        return self.get_data("firewalls/%s/" % self.id, type=DELETE)
+        return self.get_data("firewalls/%s" % self.id, type=DELETE)
 
     def __str__(self):
         return "<Firewall: %s %s>" % (self.id, self.name)

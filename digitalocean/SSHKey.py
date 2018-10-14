@@ -48,7 +48,7 @@ class SSHKey(BaseAPI):
             uploading the same public_key twice.
         """
 
-        data = self.get_data("account/keys/")
+        data = self.get_data("account/keys")
         for jsoned in data['ssh_keys']:
             if jsoned.get('public_key', "") == public_key:
                 self.id = jsoned['id']
@@ -65,7 +65,7 @@ class SSHKey(BaseAPI):
             "public_key": self.public_key,
         }
 
-        data = self.get_data("account/keys/", type=POST, params=input_params)
+        data = self.get_data("account/keys", type=POST, params=input_params)
 
         if data:
             self.id = data['ssh_key']['id']

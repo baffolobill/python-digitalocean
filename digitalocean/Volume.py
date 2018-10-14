@@ -55,7 +55,7 @@ class Volume(BaseAPI):
         Optional Args:
             description: string - text field to describe a volume
         """
-        data = self.get_data('volumes/',
+        data = self.get_data('volumes',
                              type=POST,
                              params={'name': self.name,
                                      'region': self.region,
@@ -90,7 +90,7 @@ class Volume(BaseAPI):
         Optional Args:
             description: string - text field to describe a volume
         """
-        data = self.get_data('volumes/',
+        data = self.get_data('volumes',
                              type=POST,
                              params={'name': self.name,
                                      'snapshot_id': self.snapshot_id,
@@ -111,7 +111,7 @@ class Volume(BaseAPI):
         """
             Destroy a volume
         """
-        return self.get_data("volumes/%s/" % self.id, type=DELETE)
+        return self.get_data("volumes/%s" % self.id, type=DELETE)
 
     def attach(self, droplet_id, region):
         """
@@ -122,7 +122,7 @@ class Volume(BaseAPI):
             region: string - slug identifier for the region
         """
         return self.get_data(
-            "volumes/%s/actions/" % self.id,
+            "volumes/%s/actions" % self.id,
             type=POST,
             params={"type": "attach",
                     "droplet_id": droplet_id,
@@ -138,7 +138,7 @@ class Volume(BaseAPI):
             region: string - slug identifier for the region
         """
         return self.get_data(
-            "volumes/%s/actions/" % self.id,
+            "volumes/%s/actions" % self.id,
             type=POST,
             params={"type": "detach",
                     "droplet_id": droplet_id,
@@ -154,7 +154,7 @@ class Volume(BaseAPI):
             region: string - slug identifier for the region
         """
         return self.get_data(
-            "volumes/%s/actions/" % self.id,
+            "volumes/%s/actions" % self.id,
             type=POST,
             params={"type": "resize",
                     "size_gigabytes": size_gigabytes,
@@ -169,7 +169,7 @@ class Volume(BaseAPI):
             name: string - a human-readable name for the snapshot
         """
         return self.get_data(
-            "volumes/%s/snapshots/" % self.id,
+            "volumes/%s/snapshots" % self.id,
             type=POST,
             params={"name": name}
         )
@@ -180,7 +180,7 @@ class Volume(BaseAPI):
 
         Args:
         """
-        data = self.get_data("volumes/%s/snapshots/" % self.id)
+        data = self.get_data("volumes/%s/snapshots" % self.id)
         snapshots = list()
         for jsond in data[u'snapshots']:
             snapshot = Snapshot(**jsond)

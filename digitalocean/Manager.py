@@ -37,7 +37,7 @@ class Manager(BaseAPI):
         """
             This function returns a list of Region object.
         """
-        data = self.get_data("regions/")
+        data = self.get_data("regions")
         regions = list()
         for jsoned in data['regions']:
             region = Region(**jsoned)
@@ -53,7 +53,7 @@ class Manager(BaseAPI):
         if tag_name:
             params["tag_name"] = tag_name
 
-        data = self.get_data("droplets/", params=params)
+        data = self.get_data("droplets", params=params)
 
         droplets = list()
         for jsoned in data['droplets']:
@@ -95,7 +95,7 @@ class Manager(BaseAPI):
         """
             This function returns a list of Size object.
         """
-        data = self.get_data("sizes/")
+        data = self.get_data("sizes")
         sizes = list()
         for jsoned in data['sizes']:
             size = Size(**jsoned)
@@ -112,7 +112,7 @@ class Manager(BaseAPI):
             params['private'] = 'true'
         if type:
             params['type'] = type
-        data = self.get_data("images/", params=params)
+        data = self.get_data("images", params=params)
         images = list()
         for jsoned in data['images']:
             image = Image(**jsoned)
@@ -179,7 +179,7 @@ class Manager(BaseAPI):
         """
             This function returns a list of Domain object.
         """
-        data = self.get_data("domains/")
+        data = self.get_data("domains")
         domains = list()
         for jsoned in data['domains']:
             domain = Domain(**jsoned)
@@ -197,7 +197,7 @@ class Manager(BaseAPI):
         """
             This function returns a list of SSHKey object.
         """
-        data = self.get_data("account/keys/")
+        data = self.get_data("account/keys")
         ssh_keys = list()
         for jsoned in data['ssh_keys']:
             ssh_key = SSHKey(**jsoned)
@@ -306,7 +306,7 @@ class Manager(BaseAPI):
         """
             This method returns a list of all Snapshots.
         """
-        data = self.get_data("snapshots/")
+        data = self.get_data("snapshots")
         return [
             Snapshot(token=self.token, **snapshot)
             for snapshot in data['snapshots']

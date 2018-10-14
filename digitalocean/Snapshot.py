@@ -38,7 +38,7 @@ class Snapshot(BaseAPI):
         """
             Destroy the image
         """
-        return self.get_data("snapshots/%s/" % self.id, type=DELETE)
+        return self.get_data("snapshots/%s" % self.id, type=DELETE)
 
     def __str__(self):
         return "<Snapshot: %s %s>" % (self.id, self.name)
