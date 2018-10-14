@@ -631,7 +631,7 @@ class Droplet(BaseAPI):
             try:
                 url = data[u'links'][u'pages'].get(u'next')
                 if not url:
-                        break
+                    break
                 data = self.get_data(url)
             except KeyError:  # No links.
                 break
